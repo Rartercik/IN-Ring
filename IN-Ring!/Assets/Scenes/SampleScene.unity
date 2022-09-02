@@ -2421,10 +2421,6 @@ PrefabInstance:
       propertyPath: _onHPChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 478723451}
-    - target: {fileID: 7947428909526617471, guid: 8e958ca7d05455a468489289b605fde7, type: 3}
-      propertyPath: _rotationSpeed
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e958ca7d05455a468489289b605fde7, type: 3}
 --- !u!114 &2172790432066238716 stripped
@@ -2501,9 +2497,5 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 648269873}
-    - target: {fileID: 6548791798695190225, guid: 8f7d72cb4c8f66c48a3c3366bcca690d, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 963194227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f7d72cb4c8f66c48a3c3366bcca690d, type: 3}

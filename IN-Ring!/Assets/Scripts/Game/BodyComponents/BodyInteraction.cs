@@ -52,12 +52,11 @@ namespace Game.BodyComponents
             foreach (var joint in _joints)
             {
                 joint.connectedBody = null;
-                joint.xMotion = ConfigurableJointMotion.Free;
-                joint.yMotion = ConfigurableJointMotion.Free;
-                joint.zMotion = ConfigurableJointMotion.Free;
-                joint.angularXMotion = ConfigurableJointMotion.Free;
-                joint.angularYMotion = ConfigurableJointMotion.Free;
-                joint.angularZMotion = ConfigurableJointMotion.Free;
+                joint.breakForce = 0;
+                joint.breakTorque = 0;
+                joint.xDrive = new JointDrive();
+                joint.yDrive = new JointDrive();
+                joint.zDrive = new JointDrive();
             }
 
             IsDead = true;

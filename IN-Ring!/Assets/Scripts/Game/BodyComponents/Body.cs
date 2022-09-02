@@ -41,7 +41,10 @@ namespace Game.BodyComponents
 
         public void ApplyDamage(int damage)
         {
-            _interaction.ApplyDamage(damage);
+            if (IsDead == false)
+            {
+                _interaction.ApplyDamage(damage);
+            }
         }
 
         public void Punch()
