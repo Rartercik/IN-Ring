@@ -11,16 +11,19 @@ namespace Game.Enemies.States
             _transform = enemyIntelligence.Body.transform;
         }
 
-        public override void FixedUpdateLogic()
+        protected override void UpdateLogic()
         {
             Intelligence.Body.Punch();
+        }
 
+        protected override void TrySwitchState()
+        {
             var vectorToPlayer = Intelligence.PlayerTransform.position - _transform.position;
 
             var correctDistance = Intelligence.CheckDistanceCorrectness(vectorToPlayer);
             var correctRotation = Intelligence.CheckRotationCorrectness(vectorToPlayer);
 
-            if (correctDistance == false || correctRotation == false)
+            if (correctDistance == false || correctRotation == false && Intelligence.IsAttacking() == false)
             {
                 Intelligence.SwitchState<PursuesPlayer>();
             }

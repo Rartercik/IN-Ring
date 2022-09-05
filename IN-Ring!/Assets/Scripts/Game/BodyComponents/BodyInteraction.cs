@@ -39,6 +39,7 @@ namespace Game.BodyComponents
                 _HP = 0;
                 Die();
             }
+
             _onHPChanged?.Invoke(_HP, _maxHP);
         }
 

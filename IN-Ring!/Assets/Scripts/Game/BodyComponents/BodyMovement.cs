@@ -36,11 +36,12 @@ namespace Game.BodyComponents
                 foot.SetZeroFriction();
             }
 
-            _rigidbody.MovePosition(_rigidbody.position + offset);
+            _rigidbody.velocity += offset;
             foreach (var part in _bodyParts)
             {
-                part.MovePosition(part.position + offset);
+                part.velocity += offset;
             }
+
             _stopped = false;
         }
 

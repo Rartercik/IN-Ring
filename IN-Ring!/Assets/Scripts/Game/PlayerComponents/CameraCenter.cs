@@ -22,6 +22,6 @@ public class CameraCenter : MonoBehaviour
 
         var targetRotation = Quaternion.Inverse(_playerMainJoint.targetRotation);
         var rotationStep = _rotationSpeed * Time.deltaTime;
-        _transform.rotation = Quaternion.RotateTowards(_transform.rotation, targetRotation, step);
+        _transform.rotation = Quaternion.RotateTowards(_transform.rotation, targetRotation, rotationStep);
     }
 }

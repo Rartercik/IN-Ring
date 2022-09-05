@@ -9,6 +9,15 @@
             Intelligence = enemyIntelligence;
         }
 
-        public abstract void FixedUpdateLogic();
+        public void FixedUpdateLogic()
+        {
+            UpdateLogic();
+
+            TrySwitchState();
+        }
+
+        protected abstract void UpdateLogic();
+
+        protected abstract void TrySwitchState();
     }
 }
