@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game.SoundEffects
 {
@@ -9,9 +10,13 @@ namespace Game.SoundEffects
         [SerializeField] private float _minPitch;
         [SerializeField] private float _maxPitch;
 
-        private AudioSource _source;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private AudioSource _source;
 
-        private void Start()
+        [Button]
+        private void SetRequiredComponents()
         {
             _source = GetComponent<AudioSource>();
         }

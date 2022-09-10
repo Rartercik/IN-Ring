@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,18 +13,27 @@ namespace Game.BodyComponents
         [SerializeField] private UnityEvent<int, int> _onHPChanged;
         [SerializeField] private UnityEvent _onDead;
 
-        private Body _mainBody;
-        private BodyPart[] _parts;
-        private ConfigurableJoint[] _joints;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private Body _mainBody;
+        [SerializeField] private BodyPart[] _parts;
+        [SerializeField] private ConfigurableJoint[] _joints;
+
         private int _maxHP;
 
         public bool IsDead { get; private set; }
 
-        private void Start()
+        [Button]
+        private void SetRequiredComponents()
         {
             _mainBody = GetComponent<Body>();
             _parts = GetComponentsInChildren<BodyPart>();
             _joints = GetComponentsInChildren<ConfigurableJoint>();
+        }
+
+        private void Start()
+        {
             _maxHP = _HP;
         }
 
@@ -33,36 +44,52 @@ namespace Game.BodyComponents
                 throw new ArgumentException("The damage must be positive");
             }
 
-            _HP -= damage;
-            if (_HP <= 0)
-            {
-                _HP = 0;
-                Die();
-            }
+            ProcessDamage(damage);
 
             _onHPChanged?.Invoke(_HP, _maxHP);
         }
 
         private void Die()
         {
-            foreach (var part in _parts)
-            {
-                part.enabled = false;
-            }
-
-            foreach (var joint in _joints)
-            {
-                joint.connectedBody = null;
-                joint.breakForce = 0;
-                joint.breakTorque = 0;
-                joint.xDrive = new JointDrive();
-                joint.yDrive = new JointDrive();
-                joint.zDrive = new JointDrive();
-            }
+            SwitchOffParts(_parts, _joints);
 
             IsDead = true;
             _mainBody.InvokeOuterOnDeadEvent();
             _onDead?.Invoke();
+        }
+
+        private void ProcessDamage(int damage)
+        {
+            _HP -= damage;
+
+            if (_HP <= 0)
+            {
+                _HP = 0;
+                Die();
+            }
+        }
+
+        private void SwitchOffParts(IEnumerable<BodyPart> parts, IEnumerable<ConfigurableJoint> joints)
+        {
+            foreach (var part in parts)
+            {
+                part.enabled = false;
+            }
+
+            foreach (var joint in joints)
+            {
+                DeactivateJoint(joint);
+            }
+        }
+
+        private void DeactivateJoint(ConfigurableJoint joint)
+        {
+            joint.connectedBody = null;
+            joint.breakForce = 0;
+            joint.breakTorque = 0;
+            joint.xDrive = new JointDrive();
+            joint.yDrive = new JointDrive();
+            joint.zDrive = new JointDrive();
         }
     }
 }

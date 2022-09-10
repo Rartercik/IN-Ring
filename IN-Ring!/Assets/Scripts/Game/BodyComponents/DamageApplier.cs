@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Game.SoundEffects;
 
@@ -10,12 +11,16 @@ namespace Game.BodyComponents
         [SerializeField] private Body _body;
         [SerializeField] private Rigidbody _rigidbody;
 
-        private DamageVisualizer _visualizer;
-        private RandomPitchSource _soundSource;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private DamageVisualizer _visualizer;
+        [SerializeField] private RandomPitchSource _soundSource;
 
         public Rigidbody Rigidbody => _rigidbody;
 
-        private void Start()
+        [Button]
+        private void SetRequiredComponents()
         {
             _visualizer = GetComponent<DamageVisualizer>();
             _soundSource = GetComponent<RandomPitchSource>();

@@ -212,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366903579792153}
+  _visualizer: {fileID: 3325806237873658107}
+  _soundSource: {fileID: 8276778653088902433}
 --- !u!114 &3325806237873658107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366901470368339}
 --- !u!114 &8276778653088902433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +244,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 2176243036767945356}
 --- !u!1 &213366901476042251
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366901542349545}
+  _joint: {fileID: 213366901482180773}
 --- !u!114 &716253540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +505,8 @@ MonoBehaviour:
   _minSpring: 100
   _maxSpring: 5000
   _maxAngleDeviation: 10
+  _joint: {fileID: 213366901482180773}
+  _rigidbody: {fileID: 213366901482180774}
 --- !u!1 &213366901542349544
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902996377732}
+  _joint: {fileID: 213366901712479882}
 --- !u!1 &213366901757017951
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +912,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366903586861390}
+  _visualizer: {fileID: 2945120118799272952}
+  _soundSource: {fileID: 7878485324250704432}
 --- !u!114 &2945120118799272952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,6 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6039216, g: 0.043137256, b: 0.043137256, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366901757017923}
 --- !u!114 &7878485324250704432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,6 +944,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 6433068397830969878}
 --- !u!1 &213366901797345803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366901877050722}
+  _visualizer: {fileID: 712206124106214941}
+  _soundSource: {fileID: 5125280473173074981}
 --- !u!114 &712206124106214941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1287,6 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366901816270879}
 --- !u!114 &5125280473173074981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,6 +1317,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 2066844871076038456}
 --- !u!1 &213366901822371251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366901861561923}
+  _joint: {fileID: 213366901822371254}
 --- !u!1 &213366901861561922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1690,7 @@ MonoBehaviour:
   _maximalPlayerDistance: 0.8
   _maximalPlayerAngle: 5
   _rotationDelta: 0.2
+  _transform: {fileID: 213366901877050721}
 --- !u!114 &4955848634214191595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1707,6 +1725,23 @@ MonoBehaviour:
   _feet:
   - {fileID: 213366903254685950}
   - {fileID: 213366902844565292}
+  _rigidbody: {fileID: 213366901877050722}
+  _bodyParts:
+  - {fileID: 213366901877050722}
+  - {fileID: 213366902906994599}
+  - {fileID: 213366902504490465}
+  - {fileID: 213366902493311270}
+  - {fileID: 213366903586861390}
+  - {fileID: 213366901712479881}
+  - {fileID: 213366902852270934}
+  - {fileID: 213366902964603091}
+  - {fileID: 213366903075028766}
+  - {fileID: 213366901482180774}
+  - {fileID: 213366903460628643}
+  - {fileID: 213366903579792153}
+  - {fileID: 213366901822371253}
+  - {fileID: 213366903262264677}
+  _mainJoint: {fileID: 213366901877050723}
 --- !u!114 &548004360752860752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,6 +1785,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _mainBody: {fileID: 4955848634214191595}
+  _parts:
+  - {fileID: 213366902906994601}
+  - {fileID: 213366902504490467}
+  - {fileID: 213366902493311271}
+  - {fileID: 213366903586861424}
+  - {fileID: 213366901712479883}
+  - {fileID: 213366902852270935}
+  - {fileID: 213366902964603093}
+  - {fileID: 213366903075028736}
+  - {fileID: 213366901482180775}
+  - {fileID: 213366903460628645}
+  - {fileID: 213366903579792154}
+  - {fileID: 213366901822371255}
+  - {fileID: 213366903262264678}
+  _joints:
+  - {fileID: 213366901877050723}
+  - {fileID: 213366902906994600}
+  - {fileID: 213366902504490466}
+  - {fileID: 213366902493311269}
+  - {fileID: 213366903586861391}
+  - {fileID: 213366901712479882}
+  - {fileID: 213366902852270933}
+  - {fileID: 213366902964603092}
+  - {fileID: 213366903075028767}
+  - {fileID: 213366901482180773}
+  - {fileID: 213366903460628644}
+  - {fileID: 213366903579792152}
+  - {fileID: 213366901822371254}
+  - {fileID: 213366903262264676}
 --- !u!1 &213366901888437356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,6 +2386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366903460628643}
+  _visualizer: {fileID: 7778499632828255928}
+  _soundSource: {fileID: 7572388844900282106}
 --- !u!114 &7778499632828255928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,6 +2402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366902287724567}
 --- !u!114 &7572388844900282106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2350,6 +2418,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 8645061529921796183}
 --- !u!1 &213366902329212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,6 +2745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366901822371253}
+  _visualizer: {fileID: 8491610472474751027}
+  _soundSource: {fileID: 3731105668085451591}
 --- !u!114 &8491610472474751027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2690,6 +2761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366902369041228}
 --- !u!114 &3731105668085451591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2705,6 +2777,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 6581801163023977015}
 --- !u!1 &213366902376418640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,6 +3187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902238587285}
+  _joint: {fileID: 213366902493311269}
 --- !u!114 &213366903254685950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,6 +3367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902831514598}
+  _joint: {fileID: 213366902504490466}
 --- !u!1 &213366902565317088
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,6 +3579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366901482180774}
+  _visualizer: {fileID: 1500804838410394024}
+  _soundSource: {fileID: 665515959730635495}
 --- !u!114 &1500804838410394024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3518,6 +3595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366902565317093}
 --- !u!114 &665515959730635495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3533,6 +3611,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 1811689560144899907}
 --- !u!1 &213366902569550348
 GameObject:
   m_ObjectHideFlags: 0
@@ -4036,6 +4115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366901803108724}
+  _joint: {fileID: 213366902852270933}
 --- !u!114 &213366902844565292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4381,6 +4461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366903580240488}
+  _joint: {fileID: 213366902906994600}
 --- !u!1 &213366902915432114
 GameObject:
   m_ObjectHideFlags: 0
@@ -4592,6 +4673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366902964603091}
+  _visualizer: {fileID: 1760551321174584397}
+  _soundSource: {fileID: 3583892582001130601}
 --- !u!114 &1760551321174584397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4606,6 +4689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366902915432118}
 --- !u!114 &3583892582001130601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4621,6 +4705,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 2902394806487573889}
 --- !u!1 &213366902957238763
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,6 +4901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902797132924}
+  _joint: {fileID: 213366902964603092}
 --- !u!114 &988537130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4831,6 +4917,8 @@ MonoBehaviour:
   _minSpring: 100
   _maxSpring: 2000
   _maxAngleDeviation: 10
+  _joint: {fileID: 213366902964603092}
+  _rigidbody: {fileID: 213366902964603091}
 --- !u!1 &213366902996377731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,6 +5149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902569550349}
+  _joint: {fileID: 213366903075028767}
 --- !u!114 &2069837430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5076,6 +5165,8 @@ MonoBehaviour:
   _minSpring: 100
   _maxSpring: 7000
   _maxAngleDeviation: 10
+  _joint: {fileID: 213366903075028767}
+  _rigidbody: {fileID: 213366903075028766}
 --- !u!1 &213366903081863579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5371,6 +5462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366903262264677}
+  _visualizer: {fileID: 5611758212697177673}
+  _soundSource: {fileID: 3457945784383692768}
 --- !u!114 &5611758212697177673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5385,6 +5478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366903093412071}
 --- !u!114 &3457945784383692768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5400,6 +5494,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 959591756403970443}
 --- !u!1 &213366903130840314
 GameObject:
   m_ObjectHideFlags: 0
@@ -5740,6 +5835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902078347921}
+  _joint: {fileID: 213366903262264676}
 --- !u!1 &213366903325001424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5951,6 +6047,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366903075028766}
+  _visualizer: {fileID: 4515491496896162444}
+  _soundSource: {fileID: 7294191741473718752}
 --- !u!114 &4515491496896162444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5965,6 +6063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6037736, g: 0.04215021, b: 0.04215021, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366903325001428}
 --- !u!114 &7294191741473718752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5980,6 +6079,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 962681918171339833}
 --- !u!1 &213366903460628641
 GameObject:
   m_ObjectHideFlags: 0
@@ -6141,6 +6241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902186336297}
+  _joint: {fileID: 213366903460628644}
 --- !u!1 &213366903480684846
 GameObject:
   m_ObjectHideFlags: 0
@@ -6501,6 +6602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902329212928}
+  _joint: {fileID: 213366903579792152}
 --- !u!1 &213366903580240487
 GameObject:
   m_ObjectHideFlags: 0
@@ -6695,6 +6797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationCopy: {fileID: 213366902957238764}
+  _joint: {fileID: 213366903586861391}
 --- !u!1 &213366903592584669
 GameObject:
   m_ObjectHideFlags: 0
@@ -6989,6 +7092,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4955848634214191595}
   _rigidbody: {fileID: 213366902906994599}
+  _visualizer: {fileID: 1697187731257658420}
+  _soundSource: {fileID: 855657089039558901}
 --- !u!114 &1697187731257658420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7003,6 +7108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitColor: {r: 0.6039216, g: 0.043137256, b: 0.043137256, a: 1}
   _speed: 0.8
+  _renderer: {fileID: 213366903599356532}
 --- !u!114 &855657089039558901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7018,6 +7124,7 @@ MonoBehaviour:
   _shot: {fileID: 8300000, guid: 8e14cf0574acc534da51a0951521dcb3, type: 3}
   _minPitch: 0.3
   _maxPitch: 1.5
+  _source: {fileID: 2637176530128661188}
 --- !u!1 &6548791798695190229
 GameObject:
   m_ObjectHideFlags: 0
@@ -7397,6 +7504,7 @@ MonoBehaviour:
   _enemy:
     serializedVersion: 2
     m_Bits: 256
+  _collider: {fileID: 8683480958815613007}
 --- !u!1 &8683480958988368743
 GameObject:
   m_ObjectHideFlags: 0
@@ -7471,3 +7579,4 @@ MonoBehaviour:
   _enemy:
     serializedVersion: 2
     m_Bits: 256
+  _collider: {fileID: 8683480958988368746}

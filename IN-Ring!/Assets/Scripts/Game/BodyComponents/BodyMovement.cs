@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.BodyComponents
@@ -11,17 +12,26 @@ namespace Game.BodyComponents
         [SerializeField] private float _jumpForce;
         [SerializeField] private Foot[] _feet;
 
-        private Rigidbody _rigidbody;
-        private Rigidbody[] _bodyParts;
-        private ConfigurableJoint _mainJoint;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Rigidbody[] _bodyParts;
+        [SerializeField] private ConfigurableJoint _mainJoint;
+
         private Quaternion _startRotation;
         private bool _stopped;
 
-        private void Start()
+        [Button]
+        private void SetRequiredComponents()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _bodyParts = GetComponentsInChildren<Rigidbody>();
             _mainJoint = GetComponent<ConfigurableJoint>();
+        }
+
+        private void Start()
+        {
             _startRotation = transform.localRotation;
         }
 

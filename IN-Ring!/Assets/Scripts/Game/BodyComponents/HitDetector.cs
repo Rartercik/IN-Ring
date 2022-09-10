@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Game.Tools;
 
@@ -13,10 +14,15 @@ namespace Game.BodyComponents
         [SerializeField] private AnimationClip _hitAnimation;
         [SerializeField] private LayerMask _enemy;
 
-        private Collider _collider;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private Collider _collider;
+
         private bool _canAttack = true;
 
-        private void Start()
+        [Button]
+        private void SetRequiredComponents()
         {
             _collider = GetComponent<Collider>();
         }
@@ -36,13 +42,7 @@ namespace Game.BodyComponents
             {
                 if (other.TryGetComponent(out DamageApplier enemy))
                 {
-                    enemy.ApplyDamage(_hitDamage);
-                    var detectorPosition = _collider.bounds.center;
-                    var hitPosition = other.ClosestPointOnBounds(detectorPosition);
-                    var directionToHit = (hitPosition - detectorPosition).normalized;
-                    var hitForce = directionToHit * _hitForce;
-                    enemy.Rigidbody.AddForceAtPosition(hitForce, hitPosition, ForceMode.Acceleration);
-                    _canAttack = false;
+                    Hit(enemy, other);
                 }
             }
         }
@@ -50,6 +50,23 @@ namespace Game.BodyComponents
         public void SetAttackAvailable()
         {
             _canAttack = true;
+        }
+
+        private void Hit(DamageApplier enemy, Collider enemyPart)
+        {
+            enemy.ApplyDamage(_hitDamage);
+            AddForceTo(enemy, enemyPart);
+            _canAttack = false;
+        }
+
+        private void AddForceTo(DamageApplier enemy, Collider enemyPart)
+        {
+            var detectorPosition = _collider.bounds.center;
+            var hitPosition = enemyPart.ClosestPointOnBounds(detectorPosition);
+            var directionToHit = (hitPosition - detectorPosition).normalized;
+            var hitForce = directionToHit * _hitForce;
+
+            enemy.Rigidbody.AddForceAtPosition(hitForce, hitPosition, ForceMode.Acceleration);
         }
     }
 }

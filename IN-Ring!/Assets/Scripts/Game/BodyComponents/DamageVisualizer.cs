@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game.BodyComponents
 {
@@ -8,14 +9,23 @@ namespace Game.BodyComponents
         [SerializeField] private Color _hitColor;
         [SerializeField] private float _speed;
 
-        private MeshRenderer _renderer;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private MeshRenderer _renderer;
+
         private Gradient _hitGradient;
         private bool _visualizing;
         private float _progress;
 
-        private void Start()
+        [Button]
+        private void SetRequiredComponents()
         {
             _renderer = GetComponent<MeshRenderer>();
+        }
+
+        private void Start()
+        {
             _hitGradient = CreateGradient(_hitColor, _renderer.material.color);
         }
 

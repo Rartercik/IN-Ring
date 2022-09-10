@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Game.Enemies.States;
 using Game.BodyComponents;
@@ -20,12 +21,22 @@ namespace Game.Enemies
         [SerializeField] private float _maximalPlayerAngle;
         [SerializeField] private float _rotationDelta;
 
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private Transform _transform;
+
         private EnemyState[] _states;
-        private Transform _transform;
 
         public EnemyState State { get; private set; }
         public Body Body => _body;
         public Transform PlayerTransform => _playerTransform;
+
+        [Button]
+        private void SetRequiredComponents()
+        {
+            _transform = _body.transform;
+        }
 
         private void OnValidate()
         {
@@ -45,7 +56,6 @@ namespace Game.Enemies
 
         private void Start()
         {
-            _transform = _body.transform;
             _player.OnDead += CelebrateVictory;
 
             _states = CreateAllStates();

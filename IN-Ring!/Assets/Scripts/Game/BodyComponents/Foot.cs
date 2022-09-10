@@ -10,7 +10,6 @@ namespace Game.BodyComponents
         [SerializeField] private PhysicMaterial _zeroFriction;
         [SerializeField] private PhysicMaterial _maxFriction;
 
-
         public bool OnFloor { get; private set; }
 
         private void OnCollisionEnter(Collision other)

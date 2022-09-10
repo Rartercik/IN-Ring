@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.BodyComponents
@@ -7,12 +8,21 @@ namespace Game.BodyComponents
     {
         [SerializeField] private Transform _animationCopy;
 
-        private ConfigurableJoint _joint;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private ConfigurableJoint _joint;
+
         private Quaternion _startRotation;
+
+        [Button]
+        private void SetRequiredComponents()
+        {
+            _joint = GetComponent<ConfigurableJoint>();
+        }
 
         private void Start()
         {
-            _joint = GetComponent<ConfigurableJoint>();
             _startRotation = transform.localRotation;
         }
 
