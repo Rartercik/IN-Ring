@@ -1,44 +1,47 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class CameraCenter : MonoBehaviour
+namespace Game.PlayerComponents
 {
-    [SerializeField] private Transform _player;
-    [SerializeField] private ConfigurableJoint _playerMainJoint;
-    [SerializeField] private float _speed;
-    [SerializeField] private float _rotationSpeed;
-
-    [Space(30)]
-    [Header("Required Components:")]
-    [Space(5)]
-    [SerializeField] private Transform _transform;
-
-    [Button]
-    private void SetRequiredComponents()
+    public class CameraCenter : MonoBehaviour
     {
-        _transform = transform;
-    }
+        [SerializeField] private Transform _player;
+        [SerializeField] private ConfigurableJoint _playerMainJoint;
+        [SerializeField] private float _speed;
+        [SerializeField] private float _rotationSpeed;
 
-    private void Update()
-    {
-        if (_playerMainJoint == null) return;
+        [Space(30)]
+        [Header("Required Components:")]
+        [Space(5)]
+        [SerializeField] private Transform _transform;
 
-        var targetPosition = _player.position;
-        MoveTo(targetPosition);
+        [Button]
+        private void SetRequiredComponents()
+        {
+            _transform = transform;
+        }
 
-        var targetRotation = Quaternion.Inverse(_playerMainJoint.targetRotation);
-        RotateTo(targetRotation);
-    }
+        private void Update()
+        {
+            if (_playerMainJoint == null) return;
 
-    private void MoveTo(Vector3 target)
-    {
-        var step = _speed * Time.deltaTime;
-        _transform.position = Vector3.MoveTowards(_transform.position, target, step);
-    }
+            var targetPosition = _player.position;
+            MoveTo(targetPosition);
 
-    private void RotateTo(Quaternion target)
-    {
-        var rotationStep = _rotationSpeed * Time.deltaTime;
-        _transform.rotation = Quaternion.RotateTowards(_transform.rotation, target, rotationStep);
+            var targetRotation = Quaternion.Inverse(_playerMainJoint.targetRotation);
+            RotateTo(targetRotation);
+        }
+
+        private void MoveTo(Vector3 target)
+        {
+            var step = _speed * Time.deltaTime;
+            _transform.position = Vector3.MoveTowards(_transform.position, target, step);
+        }
+
+        private void RotateTo(Quaternion target)
+        {
+            var rotationStep = _rotationSpeed * Time.deltaTime;
+            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, target, rotationStep);
+        }
     }
 }

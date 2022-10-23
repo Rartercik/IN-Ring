@@ -7,6 +7,8 @@ namespace Game.BodyComponents
     [RequireComponent(typeof(ConfigurableJoint))]
     public class BodyMovement : MonoBehaviour
     {
+        [SerializeField] private Animator _animator;
+        [SerializeField] private float _slerpPositionSpring;
         [SerializeField] private float _movementSpeed;
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _jumpForce;
@@ -18,6 +20,8 @@ namespace Game.BodyComponents
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Rigidbody[] _bodyParts;
         [SerializeField] private ConfigurableJoint _mainJoint;
+
+        private readonly string _speedParameter = "MovementSpeed";
 
         private Quaternion _startRotation;
         private bool _stopped;
@@ -33,23 +37,17 @@ namespace Game.BodyComponents
         private void Start()
         {
             _startRotation = transform.localRotation;
+            _animator.SetFloat(_speedParameter, _movementSpeed);
         }
 
         public void Move(Vector3 _direction, bool worldSpace = false)
         {
             _direction = _direction.normalized;
             var offsetRotation = worldSpace ? Quaternion.identity : _rigidbody.rotation;
-            var offset = offsetRotation * _direction * _movementSpeed;
 
             foreach (var foot in _feet)
             {
                 foot.SetZeroFriction();
-            }
-
-            _rigidbody.velocity += offset;
-            foreach (var part in _bodyParts)
-            {
-                part.velocity += offset;
             }
 
             _stopped = false;
@@ -57,6 +55,8 @@ namespace Game.BodyComponents
 
         public void Rotate(float yRotation)
         {
+            _mainJoint.slerpDrive = CreateDefaultJointDrive(_slerpPositionSpring);
+
             var finalRotationY = _rigidbody.rotation.eulerAngles.y + (yRotation * _rotationSpeed);
             var finalRotation = _mainJoint.targetRotation;
             var finalEulerRotation = finalRotation.eulerAngles;
@@ -97,6 +97,15 @@ namespace Game.BodyComponents
             {
                 foot.SetMaxFriction();
             }
+        }
+
+        private JointDrive CreateDefaultJointDrive(float positionSpring)
+        {
+            var slerpDrive = new JointDrive();
+            slerpDrive.maximumForce = float.MaxValue;
+            slerpDrive.positionSpring = positionSpring;
+
+            return slerpDrive;
         }
 
         private bool CheckJumpAvailable()

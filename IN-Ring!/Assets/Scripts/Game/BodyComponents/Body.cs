@@ -7,8 +7,7 @@ namespace Game.BodyComponents
     {
         [SerializeField] private BodyMovement _movement;
         [SerializeField] private BodyInteraction _interaction;
-        [SerializeField] private Animator _legsAnimator;
-        [SerializeField] private Animator _spineAnimator;
+        [SerializeField] private Animator _animator;
 
         public event Action OnDead;
 
@@ -20,7 +19,7 @@ namespace Game.BodyComponents
         public void Move(Vector3 _direction, bool worldSpace = false)
         {
             _movement.Move(_direction, worldSpace);
-            _legsAnimator.SetBool(_legsMoving, true);
+            _animator.SetBool(_legsMoving, true);
         }
 
         public void Rotate(float yRotation)
@@ -36,7 +35,7 @@ namespace Game.BodyComponents
         public void Stop()
         {
             _movement.Stop();
-            _legsAnimator.SetBool(_legsMoving, false);
+            _animator.SetBool(_legsMoving, false);
         }
 
         public void ApplyDamage(int damage)
@@ -49,7 +48,7 @@ namespace Game.BodyComponents
 
         public void Punch()
         {
-            _spineAnimator.SetTrigger(_spinePunch);
+            _animator.SetTrigger(_spinePunch);
         }
 
         public void InvokeOuterOnDeadEvent()
