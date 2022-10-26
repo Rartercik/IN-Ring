@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using RootMotion.Dynamics;
 
 namespace Game.BodyComponents
 {
     [RequireComponent(typeof(Body))]
     public class BodyInteraction : MonoBehaviour
     {
+        [SerializeField] private PuppetMaster _puppetMaster;
+        [SerializeField] private ConfigurableJoint _mainJoint;
         [SerializeField] private int _HP;
         [SerializeField] private UnityEvent<int, int> _onHPChanged;
         [SerializeField] private UnityEvent _onDead;
@@ -17,8 +20,6 @@ namespace Game.BodyComponents
         [Header("Required Components:")]
         [Space(5)]
         [SerializeField] private Body _mainBody;
-        [SerializeField] private BodyPart[] _parts;
-        [SerializeField] private ConfigurableJoint[] _joints;
 
         private int _maxHP;
 
@@ -28,8 +29,6 @@ namespace Game.BodyComponents
         private void SetRequiredComponents()
         {
             _mainBody = GetComponent<Body>();
-            _parts = GetComponentsInChildren<BodyPart>();
-            _joints = GetComponentsInChildren<ConfigurableJoint>();
         }
 
         private void Start()
@@ -51,7 +50,7 @@ namespace Game.BodyComponents
 
         private void Die()
         {
-            SwitchOffParts(_parts, _joints);
+            DeactivateMuscles(_puppetMaster);
 
             IsDead = true;
             _mainBody.InvokeOuterOnDeadEvent();
@@ -69,27 +68,14 @@ namespace Game.BodyComponents
             }
         }
 
-        private void SwitchOffParts(IEnumerable<BodyPart> parts, IEnumerable<ConfigurableJoint> joints)
+        private void DeactivateMuscles(PuppetMaster puppetMaster)
         {
-            foreach (var part in parts)
-            {
-                part.enabled = false;
-            }
+            var musclesCount = puppetMaster.muscles.Length;
 
-            foreach (var joint in joints)
+            for (int i = 0; i < musclesCount; i++)
             {
-                DeactivateJoint(joint);
+                _puppetMaster.DisconnectMuscleRecursive(0, MuscleDisconnectMode.Explode);
             }
-        }
-
-        private void DeactivateJoint(ConfigurableJoint joint)
-        {
-            joint.connectedBody = null;
-            joint.breakForce = 0;
-            joint.breakTorque = 0;
-            joint.xDrive = new JointDrive();
-            joint.yDrive = new JointDrive();
-            joint.zDrive = new JointDrive();
         }
     }
 }

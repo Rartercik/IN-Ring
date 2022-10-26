@@ -14,7 +14,7 @@ namespace Game.Enemies
         [SerializeField] private Body _body;
         [SerializeField] private Body _player;
         [SerializeField] private Transform _playerTransform;
-        [SerializeField] private Animator _spine;
+        [SerializeField] private Animator _animator;
         [SerializeField] private AnimationClip[] _attacks;
         [SerializeField] private AnimationClip _winClip;
         [SerializeField] private float _maximalPlayerDistance;
@@ -40,14 +40,14 @@ namespace Game.Enemies
 
         private void OnValidate()
         {
-            if (_spine.Contains(_winClip) == false)
+            if (_animator.Contains(_winClip) == false)
             {
                 throw new ArgumentException("Animator should contain your win animation");
             }
 
             foreach (var attack in _attacks)
             {
-                if (_spine.Contains(attack) == false)
+                if (_animator.Contains(attack) == false)
                 {
                     throw new ArgumentException("Animator should contain your attack animation");
                 }
@@ -88,7 +88,7 @@ namespace Game.Enemies
         {
             foreach (var attack in _attacks)
             {
-                if (_spine.GetCurrentAnimatorStateInfo(0).IsName(attack.name))
+                if (_animator.GetCurrentAnimatorStateInfo(0).IsName(attack.name))
                 {
                     return true;
                 }
@@ -111,7 +111,7 @@ namespace Game.Enemies
 
         private void CelebrateVictory()
         {
-            _spine.Play(_winClip.name);
+            _animator.Play(_winClip.name);
             enabled = false;
         }
     }

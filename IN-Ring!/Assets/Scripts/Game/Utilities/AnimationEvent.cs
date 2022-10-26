@@ -10,7 +10,6 @@ namespace Game.Utilities
         private void Invoke()
         {
             _animationEvent?.Invoke();
-            Debug.Log("Just Perfect!");
         }
     }
 }

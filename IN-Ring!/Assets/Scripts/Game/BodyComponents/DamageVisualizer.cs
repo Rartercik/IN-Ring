@@ -1,28 +1,16 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.BodyComponents
 {
-    [RequireComponent(typeof(MeshRenderer))]
     public class DamageVisualizer : MonoBehaviour
     {
+        [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Color _hitColor;
         [SerializeField] private float _speed;
-
-        [Space(30)]
-        [Header("Required Components:")]
-        [Space(5)]
-        [SerializeField] private MeshRenderer _renderer;
-
+        
         private Gradient _hitGradient;
         private bool _visualizing;
         private float _progress;
-
-        [Button]
-        private void SetRequiredComponents()
-        {
-            _renderer = GetComponent<MeshRenderer>();
-        }
 
         private void Start()
         {

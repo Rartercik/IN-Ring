@@ -40,9 +40,9 @@ namespace Game.BodyComponents
             _animator.SetFloat(_speedParameter, _movementSpeed);
         }
 
-        public void Move(Vector3 _direction, bool worldSpace = false)
+        public void Move(Vector3 direction, bool worldSpace = false)
         {
-            _direction = _direction.normalized;
+            direction = direction.normalized;
             var offsetRotation = worldSpace ? Quaternion.identity : _rigidbody.rotation;
 
             foreach (var foot in _feet)
