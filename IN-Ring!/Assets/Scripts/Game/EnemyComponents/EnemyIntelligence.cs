@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Game.Enemies.States;
+using Game.EnemyComponents.States;
 using Game.BodyComponents;
 using Game.Tools;
 
-namespace Game.Enemies
+namespace Game.EnemyComponents
 {
     public class EnemyIntelligence : MonoBehaviour
     {

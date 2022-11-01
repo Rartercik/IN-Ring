@@ -1,4 +1,4 @@
-﻿namespace Game.Enemies.States
+﻿namespace Game.EnemyComponents.States
 {
     public abstract class EnemyState
     {

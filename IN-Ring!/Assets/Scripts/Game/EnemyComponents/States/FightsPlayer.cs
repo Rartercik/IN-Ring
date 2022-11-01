@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Enemies.States
+namespace Game.EnemyComponents.States
 {
     public class FightsPlayer : EnemyState
     {
