@@ -10,7 +10,7 @@ namespace Game.EnemyComponents.States
         public PursuesPlayer(EnemyIntelligence enemyIntelligence, float rotationDelta)
             : base(enemyIntelligence)
         {
-            _transform = enemyIntelligence.Body.transform;
+            _transform = enemyIntelligence.BodyTransform;
             _rotationDelta = rotationDelta;
         }
 
@@ -18,8 +18,8 @@ namespace Game.EnemyComponents.States
         {
             var vectorToPlayer = Intelligence.PlayerTransform.position - _transform.position;
 
-            var correctDistance = Intelligence.CheckDistanceCorrectness(vectorToPlayer);
-            var correctRotation = Intelligence.CheckRotationCorrectness(vectorToPlayer);
+            var correctDistance = Intelligence.CheckDistanceCorrectness();
+            var correctRotation = Intelligence.CheckRotationCorrectness();
 
             var dotProduct = Vector3.Dot(_transform.rotation * Vector3.left, vectorToPlayer);
             var rotationDelta = dotProduct > 0 ? -_rotationDelta : _rotationDelta;
@@ -29,10 +29,8 @@ namespace Game.EnemyComponents.States
 
         protected override void TrySwitchState()
         {
-            var vectorToPlayer = Intelligence.PlayerTransform.position - _transform.position;
-
-            var correctDistance = Intelligence.CheckDistanceCorrectness(vectorToPlayer);
-            var correctRotation = Intelligence.CheckRotationCorrectness(vectorToPlayer);
+            var correctDistance = Intelligence.CheckDistanceCorrectness();
+            var correctRotation = Intelligence.CheckRotationCorrectness();
 
             if (correctDistance && correctRotation)
             {

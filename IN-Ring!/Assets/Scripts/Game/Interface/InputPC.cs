@@ -34,22 +34,9 @@ namespace Game.Interface
 
         private void MovePlayer()
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                _player.Move(Vector3.forward);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                _player.Move(Vector3.left);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                _player.Move(Vector3.back);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                _player.Move(Vector3.right);
-            }
+            var moveDirection = GetActualDirection();
+
+            _player.Move(moveDirection);
         }
 
         private void RotatePlayer()
@@ -57,6 +44,30 @@ namespace Game.Interface
             var yRotation = Input.GetAxisRaw("Mouse X");
 
             _player.Rotate(yRotation);
+        }
+
+        private Vector3 GetActualDirection()
+        {
+            var moveDirection = Vector3.zero;
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                moveDirection += Vector3.forward;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                moveDirection += Vector3.left;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                moveDirection += Vector3.back;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                moveDirection += Vector3.right;
+            }
+
+            return moveDirection;
         }
     }
 }

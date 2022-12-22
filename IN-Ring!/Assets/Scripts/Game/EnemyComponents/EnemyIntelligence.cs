@@ -12,6 +12,7 @@ namespace Game.EnemyComponents
     public class EnemyIntelligence : MonoBehaviour
     {
         [SerializeField] private Body _body;
+        [SerializeField] private Transform _bodyTransform;
         [SerializeField] private Body _player;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Animator _animator;
@@ -20,23 +21,13 @@ namespace Game.EnemyComponents
         [SerializeField] private float _maximalPlayerDistance;
         [SerializeField] private float _maximalPlayerAngle;
         [SerializeField] private float _rotationDelta;
-
-        [Space(30)]
-        [Header("Required Components:")]
-        [Space(5)]
-        [SerializeField] private Transform _transform;
-
+        
         private EnemyState[] _states;
 
         public EnemyState State { get; private set; }
         public Body Body => _body;
+        public Transform BodyTransform => _bodyTransform;
         public Transform PlayerTransform => _playerTransform;
-
-        [Button]
-        private void SetRequiredComponents()
-        {
-            _transform = _body.transform;
-        }
 
         private void OnValidate()
         {
@@ -73,14 +64,17 @@ namespace Game.EnemyComponents
             State = state;
         }
 
-        public bool CheckDistanceCorrectness(Vector3 vectorToPlayer)
+        public bool CheckDistanceCorrectness()
         {
+            var vectorToPlayer = PlayerTransform.position - _bodyTransform.position;
             return vectorToPlayer.magnitude <= _maximalPlayerDistance;
         }
 
-        public bool CheckRotationCorrectness(Vector3 vectorToTarget)
+        public bool CheckRotationCorrectness()
         {
-            var rotationToPlayer = Vector3.Angle(_transform.forward, vectorToTarget);
+            var vectorToPlayer = PlayerTransform.position - _bodyTransform.position;
+
+            var rotationToPlayer = Vector3.Angle(_bodyTransform.forward, vectorToPlayer);
             return rotationToPlayer <= _maximalPlayerAngle;
         }
 

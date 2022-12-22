@@ -7,7 +7,7 @@ namespace Game.Utilities
     {
         [SerializeField] private UnityEvent _animationEvent;
 
-        private void Invoke()
+        private void HitAnimationEvent()
         {
             _animationEvent?.Invoke();
         }

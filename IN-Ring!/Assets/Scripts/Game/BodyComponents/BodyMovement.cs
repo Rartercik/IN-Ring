@@ -1,13 +1,15 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.BodyComponents
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(ConfigurableJoint))]
     public class BodyMovement : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private ConfigurableJoint _mainJoint;
+        [SerializeField] private GameObject _bodyPartsParent;
         [SerializeField] private float _slerpPositionSpring;
         [SerializeField] private float _movementSpeed;
         [SerializeField] private float _rotationSpeed;
@@ -17,11 +19,14 @@ namespace Game.BodyComponents
         [Space(30)]
         [Header("Required Components:")]
         [Space(5)]
-        [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Rigidbody[] _bodyParts;
-        [SerializeField] private ConfigurableJoint _mainJoint;
 
+        private readonly string _legsMoving = "Moving";
         private readonly string _speedParameter = "MovementSpeed";
+        private readonly string _swapSide = "SwapSide";
+        private readonly float _swapCoefficient = 0.8f;
+        private readonly string _movementX = "MovementX";
+        private readonly string _movementY = "MovementY";
 
         private Quaternion _startRotation;
         private bool _stopped;
@@ -29,9 +34,7 @@ namespace Game.BodyComponents
         [Button]
         private void SetRequiredComponents()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _bodyParts = GetComponentsInChildren<Rigidbody>();
-            _mainJoint = GetComponent<ConfigurableJoint>();
+            _bodyParts = _bodyPartsParent.GetComponentsInChildren<Rigidbody>();
         }
 
         private void Start()
@@ -42,14 +45,22 @@ namespace Game.BodyComponents
 
         public void Move(Vector3 direction, bool worldSpace = false)
         {
+            if (direction == Vector3.zero) return;
+
             direction = direction.normalized;
-            var offsetRotation = worldSpace ? Quaternion.identity : _rigidbody.rotation;
+
+            _animator.SetFloat(_movementX, direction.x);
+            _animator.SetFloat(_movementY, direction.z);
+
+            var swapping = Mathf.Abs(direction.z) > _swapCoefficient;
+            _animator.SetBool(_swapSide, swapping);
 
             foreach (var foot in _feet)
             {
                 foot.SetZeroFriction();
             }
 
+            _animator.SetBool(_legsMoving, true);
             _stopped = false;
         }
 
@@ -81,6 +92,7 @@ namespace Game.BodyComponents
         {
             if (_stopped) return;
 
+            _animator.SetBool(_legsMoving, false);
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
 
             foreach (var part in _bodyParts)

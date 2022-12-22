@@ -1,15 +1,8 @@
-﻿using UnityEngine;
-
-namespace Game.EnemyComponents.States
+﻿namespace Game.EnemyComponents.States
 {
     public class FightsPlayer : EnemyState
     {
-        private readonly Transform _transform;
-        
-        public FightsPlayer(EnemyIntelligence enemyIntelligence) : base(enemyIntelligence)
-        {
-            _transform = enemyIntelligence.Body.transform;
-        }
+        public FightsPlayer(EnemyIntelligence enemyIntelligence) : base(enemyIntelligence) { }
 
         protected override void UpdateLogic()
         {
@@ -18,10 +11,8 @@ namespace Game.EnemyComponents.States
 
         protected override void TrySwitchState()
         {
-            var vectorToPlayer = Intelligence.PlayerTransform.position - _transform.position;
-
-            var correctDistance = Intelligence.CheckDistanceCorrectness(vectorToPlayer);
-            var correctRotation = Intelligence.CheckRotationCorrectness(vectorToPlayer);
+            var correctDistance = Intelligence.CheckDistanceCorrectness();
+            var correctRotation = Intelligence.CheckRotationCorrectness();
 
             if (correctDistance == false || correctRotation == false && Intelligence.IsAttacking() == false)
             {

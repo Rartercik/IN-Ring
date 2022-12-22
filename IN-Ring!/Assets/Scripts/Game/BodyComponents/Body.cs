@@ -11,7 +11,6 @@ namespace Game.BodyComponents
 
         public event Action OnDead;
 
-        private readonly string _legsMoving = "Moving";
         private readonly string _spinePunch = "Punch";
 
         public bool IsDead => _interaction.IsDead;
@@ -19,7 +18,6 @@ namespace Game.BodyComponents
         public void Move(Vector3 _direction, bool worldSpace = false)
         {
             _movement.Move(_direction, worldSpace);
-            _animator.SetBool(_legsMoving, true);
         }
 
         public void Rotate(float yRotation)
@@ -35,7 +33,6 @@ namespace Game.BodyComponents
         public void Stop()
         {
             _movement.Stop();
-            _animator.SetBool(_legsMoving, false);
         }
 
         public void ApplyDamage(int damage)
