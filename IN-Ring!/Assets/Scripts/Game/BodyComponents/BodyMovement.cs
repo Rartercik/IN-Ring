@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -27,6 +28,17 @@ namespace Game.BodyComponents
         private readonly float _swapCoefficient = 0.8f;
         private readonly string _movementX = "MovementX";
         private readonly string _movementY = "MovementY";
+        private readonly Vector3[] _animationBlendingPoints = new Vector3[]
+        {
+            new Vector3(0, 0, 1),
+            new Vector3(0, 0, -1),
+            new Vector3(-1, 0, 0),
+            new Vector3(1, 0, 0),
+            new Vector3(-0.7f, 0, -0.7f),
+            new Vector3(0.7f, 0, -0.7f),
+            new Vector3(-0.7f, 0, 0.7f),
+            new Vector3(0.7f, 0, 0.7f)
+        };
 
         private Quaternion _startRotation;
         private bool _stopped;
@@ -48,6 +60,7 @@ namespace Game.BodyComponents
             if (direction == Vector3.zero) return;
 
             direction = direction.normalized;
+            direction = GetNearestPoint(direction, _animationBlendingPoints);
 
             _animator.SetFloat(_movementX, direction.x);
             _animator.SetFloat(_movementY, direction.z);
@@ -131,6 +144,24 @@ namespace Game.BodyComponents
             }
 
             return true;
+        }
+
+        private Vector3 GetNearestPoint(Vector3 target, IEnumerable<Vector3> points)
+        {
+            var nearest = points.First();
+
+            foreach(var point in points)
+            {
+                var vectorToPoint = point - target;
+                var vectorToNearest = nearest - target;
+
+                if (vectorToPoint.magnitude < vectorToNearest.magnitude)
+                {
+                    nearest = point;
+                }
+            }
+
+            return nearest;
         }
     }
 }

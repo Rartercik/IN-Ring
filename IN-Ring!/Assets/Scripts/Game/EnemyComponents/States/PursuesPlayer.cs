@@ -24,6 +24,7 @@ namespace Game.EnemyComponents.States
             var dotProduct = Vector3.Dot(_transform.rotation * Vector3.left, vectorToPlayer);
             var rotationDelta = dotProduct > 0 ? -_rotationDelta : _rotationDelta;
 
+            vectorToPlayer = _transform.InverseTransformDirection(vectorToPlayer);
             PursuePlayer(vectorToPlayer, rotationDelta, correctDistance, correctRotation);
         }
 

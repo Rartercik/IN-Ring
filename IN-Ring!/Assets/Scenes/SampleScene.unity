@@ -5360,7 +5360,7 @@ MonoBehaviour:
       group: 5
       mappingWeight: 1
       pinWeight: 1
-      muscleWeight: 0.15
+      muscleWeight: 0.4
       muscleDamper: 1
       internalCollisionIgnores:
         ignoreAll: 1
@@ -5393,7 +5393,7 @@ MonoBehaviour:
       group: 5
       mappingWeight: 0.7
       pinWeight: 1
-      muscleWeight: 0.2
+      muscleWeight: 0.3
       muscleDamper: 1
       internalCollisionIgnores:
         ignoreAll: 0
@@ -5426,7 +5426,7 @@ MonoBehaviour:
       group: 6
       mappingWeight: 0.7
       pinWeight: 1
-      muscleWeight: 0.3
+      muscleWeight: 0.2
       muscleDamper: 1
       internalCollisionIgnores:
         ignoreAll: 0
@@ -5459,7 +5459,7 @@ MonoBehaviour:
       group: 5
       mappingWeight: 1
       pinWeight: 1
-      muscleWeight: 0.15
+      muscleWeight: 0.4
       muscleDamper: 1
       internalCollisionIgnores:
         ignoreAll: 1
@@ -5492,7 +5492,7 @@ MonoBehaviour:
       group: 5
       mappingWeight: 0.7
       pinWeight: 1
-      muscleWeight: 0.2
+      muscleWeight: 0.3
       muscleDamper: 1
       internalCollisionIgnores:
         ignoreAll: 0
@@ -5525,7 +5525,7 @@ MonoBehaviour:
       group: 6
       mappingWeight: 0.7
       pinWeight: 1
-      muscleWeight: 0.3
+      muscleWeight: 0.2
       muscleDamper: 1
       internalCollisionIgnores:
         ignoreAll: 0
