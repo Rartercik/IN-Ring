@@ -6,6 +6,15 @@ namespace Game.Interface
     public class InputPC : MonoBehaviour
     {
         [SerializeField] private Body _player;
+        [SerializeField] private float _maxRotationDeviation;
+
+        private readonly string _mouseX = "Mouse X";
+        private readonly string _mouseY = "Mouse Y";
+
+        private void OnGUI()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
         private void Update()
         {
@@ -30,6 +39,8 @@ namespace Game.Interface
             MovePlayer();
 
             RotatePlayer();
+
+            SetChestXRotation();
         }
 
         private void MovePlayer()
@@ -41,9 +52,18 @@ namespace Game.Interface
 
         private void RotatePlayer()
         {
-            var yRotation = Input.GetAxisRaw("Mouse X");
+            var yRotation = Input.GetAxisRaw(_mouseX);
+            yRotation = Mathf.Clamp(yRotation, -_maxRotationDeviation, _maxRotationDeviation);
 
             _player.Rotate(yRotation);
+        }
+
+        private void SetChestXRotation()
+        {
+            var xRotation = -Input.GetAxisRaw(_mouseY);
+            xRotation = Mathf.Clamp(xRotation, -_maxRotationDeviation, _maxRotationDeviation);
+
+            _player.RotateChestXDimension(xRotation);
         }
 
         private Vector3 GetActualDirection()

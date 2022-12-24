@@ -6,6 +6,7 @@ namespace Game.BodyComponents
     public class Body : MonoBehaviour
     {
         [SerializeField] private BodyMovement _movement;
+        [SerializeField] private ChestFlexioner _chestFlexioner;
         [SerializeField] private BodyInteraction _interaction;
         [SerializeField] private Animator _animator;
 
@@ -25,6 +26,11 @@ namespace Game.BodyComponents
             _movement.Rotate(yRotation);
         }
 
+        public void RotateChestXDimension(float xRotation)
+        {
+            _chestFlexioner.RotateXDimension(xRotation);
+        }
+
         public void TryJump()
         {
             _movement.Jump();
@@ -41,6 +47,11 @@ namespace Game.BodyComponents
             {
                 _interaction.ApplyDamage(damage);
             }
+        }
+
+        public void MakeImmortal()
+        {
+            _interaction.MakeImmortal();
         }
 
         public void Punch()

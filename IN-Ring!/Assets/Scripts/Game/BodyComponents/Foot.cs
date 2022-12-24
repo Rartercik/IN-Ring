@@ -6,9 +6,6 @@ namespace Game.BodyComponents
     public class Foot : MonoBehaviour
     {
         [SerializeField] private LayerMask _floor;
-        [SerializeField] private Collider _collider;
-        [SerializeField] private PhysicMaterial _zeroFriction;
-        [SerializeField] private PhysicMaterial _maxFriction;
 
         public bool OnFloor { get; private set; }
 
@@ -26,16 +23,6 @@ namespace Game.BodyComponents
             {
                 OnFloor = false;
             }
-        }
-
-        public void SetZeroFriction()
-        {
-            _collider.material = _zeroFriction;
-        }
-
-        public void SetMaxFriction()
-        {
-            _collider.material = _maxFriction;
         }
     }
 }

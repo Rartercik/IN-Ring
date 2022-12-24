@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Legs
+  m_Mask: 01000000000000000000000001000000010000000000000000000000000000000000000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Pelvis
+    m_Weight: 1
+  - m_Path: Pelvis/Cube
+    m_Weight: 1
+  - m_Path: Pelvis/Legs
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/LeftUpLeg
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/LeftUpLeg/Cube_3
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/LeftUpLeg/LeftDownLeg
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/LeftUpLeg/LeftDownLeg/Cube_8
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/LeftUpLeg/LeftDownLeg/LeftFoot
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/LeftUpLeg/LeftDownLeg/LeftFoot/Cube_12
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/RightUpLeg
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/RightUpLeg/Cube_4
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/RightUpLeg/RightDownLeg
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/RightUpLeg/RightDownLeg/Cube_9
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/RightUpLeg/RightDownLeg/RightFoot
+    m_Weight: 1
+  - m_Path: Pelvis/Legs/RightUpLeg/RightDownLeg/RightFoot/Cube_13
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Cube_1
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/Cube_2
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/Head
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/Head/Cube_5
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/LeftUpArm
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/LeftUpArm/Cube_6
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/LeftUpArm/LeftDownArm
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/LeftUpArm/LeftDownArm/Cube_10
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/LeftUpArm/LeftDownArm/LeftHand
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/RightUpArm
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/RightUpArm/Cube_7
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/RightUpArm/RightDownArm
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/RightUpArm/RightDownArm/Cube_11
+    m_Weight: 1
+  - m_Path: Pelvis/Spine1/Spine2/RightUpArm/RightDownArm/RightHand
+    m_Weight: 1

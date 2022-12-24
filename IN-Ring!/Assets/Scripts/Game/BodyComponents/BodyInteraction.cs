@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +10,6 @@ namespace Game.BodyComponents
     public class BodyInteraction : MonoBehaviour
     {
         [SerializeField] private PuppetMaster _puppetMaster;
-        [SerializeField] private ConfigurableJoint _mainJoint;
         [SerializeField] private int _HP;
         [SerializeField] private UnityEvent<int, int> _onHPChanged;
         [SerializeField] private UnityEvent _onDead;
@@ -22,6 +20,7 @@ namespace Game.BodyComponents
         [SerializeField] private Body _mainBody;
 
         private int _maxHP;
+        private bool _immortal;
 
         public bool IsDead { get; private set; }
 
@@ -42,10 +41,15 @@ namespace Game.BodyComponents
             {
                 throw new ArgumentException("The damage must be positive");
             }
+            if (_immortal) return;
 
             ProcessDamage(damage);
-
             _onHPChanged?.Invoke(_HP, _maxHP);
+        }
+
+        public void MakeImmortal()
+        {
+            _immortal = true;
         }
 
         private void Die()

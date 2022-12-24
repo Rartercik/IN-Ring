@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Game.BodyComponents;
 
 namespace Game.PlayerComponents
 {
@@ -7,8 +8,11 @@ namespace Game.PlayerComponents
     {
         [SerializeField] private Transform _player;
         [SerializeField] private ConfigurableJoint _playerMainJoint;
+        [SerializeField] private ChestFlexioner _chest;
         [SerializeField] private float _speed;
         [SerializeField] private float _rotationSpeed;
+        [SerializeField] private float _minXRotation;
+        [SerializeField] private float _maxXRotation;
 
         [Space(30)]
         [Header("Required Components:")]
@@ -25,10 +29,22 @@ namespace Game.PlayerComponents
         {
             if (_playerMainJoint == null) return;
 
+            Move();
+            Rotate();
+        }
+
+        private void Move()
+        {
             var targetPosition = _player.position;
             MoveTo(targetPosition);
+        }
 
+        private void Rotate()
+        {
             var targetRotation = Quaternion.Inverse(_playerMainJoint.targetRotation);
+            var xRotation = Mathf.Clamp(_chest.XRotation, _minXRotation, _maxXRotation);
+            targetRotation = Quaternion.Euler(xRotation, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
+
             RotateTo(targetRotation);
         }
 

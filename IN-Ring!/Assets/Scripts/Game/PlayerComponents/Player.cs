@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
+using Game.Interface;
+using Game.FightingEnvironment;
 using Game.BodyComponents;
 
 namespace Game.PlayerComponents
@@ -7,18 +8,18 @@ namespace Game.PlayerComponents
     public class Player : MonoBehaviour
     {
         [SerializeField] private Body _enemy;
-        [SerializeField] private Canvas _victory;
-        [SerializeField] private UnityEvent _onWon;
+        [SerializeField] private GameStatesHandler _gameStatesHandler;
+        [SerializeField] private InputPC _input;
 
         private void Start()
         {
-            _enemy.OnDead += ShowVictory;
+            _enemy.OnDead += InitializeVictory;
         }
 
-        private void ShowVictory()
+        private void InitializeVictory()
         {
-            _victory.enabled = true;
-            _onWon?.Invoke();
+            _gameStatesHandler.ReportPlayerVictory();
+            _input.enabled = false;
         }
     }
 }

@@ -68,11 +68,6 @@ namespace Game.BodyComponents
             var swapping = Mathf.Abs(direction.z) > _swapCoefficient;
             _animator.SetBool(_swapSide, swapping);
 
-            foreach (var foot in _feet)
-            {
-                foot.SetZeroFriction();
-            }
-
             _animator.SetBool(_legsMoving, true);
             _stopped = false;
         }
@@ -114,14 +109,6 @@ namespace Game.BodyComponents
             }
 
             _stopped = true;
-        }
-
-        public void StopFeet()
-        {
-            foreach (var foot in _feet)
-            {
-                foot.SetMaxFriction();
-            }
         }
 
         private JointDrive CreateDefaultJointDrive(float positionSpring)
