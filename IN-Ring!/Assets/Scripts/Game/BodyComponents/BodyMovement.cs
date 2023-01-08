@@ -12,7 +12,8 @@ namespace Game.BodyComponents
         [SerializeField] private ConfigurableJoint _mainJoint;
         [SerializeField] private GameObject _bodyPartsParent;
         [SerializeField] private float _slerpPositionSpring;
-        [SerializeField] private float _movementSpeed;
+        [SerializeField] private float _animationSpeed;
+        [SerializeField] private float _additionalVelocity;
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _jumpForce;
         [SerializeField] private Foot[] _feet;
@@ -52,7 +53,7 @@ namespace Game.BodyComponents
         private void Start()
         {
             _startRotation = transform.localRotation;
-            _animator.SetFloat(_speedParameter, _movementSpeed);
+            _animator.SetFloat(_speedParameter, _animationSpeed);
         }
 
         public void Move(Vector3 direction, bool worldSpace = false)
@@ -61,14 +62,9 @@ namespace Game.BodyComponents
 
             direction = direction.normalized;
             direction = GetNearestPoint(direction, _animationBlendingPoints);
+            SetAnimation(direction);
+            SetVelocity(_rigidbody, _bodyParts, direction, true, _additionalVelocity);
 
-            _animator.SetFloat(_movementX, direction.x);
-            _animator.SetFloat(_movementY, direction.z);
-
-            var swapping = Mathf.Abs(direction.z) > _swapCoefficient;
-            _animator.SetBool(_swapSide, swapping);
-
-            _animator.SetBool(_legsMoving, true);
             _stopped = false;
         }
 
@@ -101,23 +97,34 @@ namespace Game.BodyComponents
             if (_stopped) return;
 
             _animator.SetBool(_legsMoving, false);
-            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
-
-            foreach (var part in _bodyParts)
-            {
-                part.velocity = Vector3.zero;
-            }
+            SetVelocity(_rigidbody, _bodyParts, Vector3.zero, false);
 
             _stopped = true;
         }
 
-        private JointDrive CreateDefaultJointDrive(float positionSpring)
+        private void SetAnimation(Vector3 movementDirection)
         {
-            var slerpDrive = new JointDrive();
-            slerpDrive.maximumForce = float.MaxValue;
-            slerpDrive.positionSpring = positionSpring;
+            _animator.SetFloat(_movementX, movementDirection.x);
+            _animator.SetFloat(_movementY, movementDirection.z);
 
-            return slerpDrive;
+            var swapping = Mathf.Abs(movementDirection.z) > _swapCoefficient;
+            _animator.SetBool(_swapSide, swapping);
+
+            _animator.SetBool(_legsMoving, true);
+        }
+
+        private void SetVelocity(Rigidbody root, IEnumerable<Rigidbody> bodyParts, Vector3 direction, bool isAdditional, float additionalVelocity = 0)
+        {
+            var velocityVector = direction * Time.fixedDeltaTime * additionalVelocity;
+
+            var rootVelocity = isAdditional ? root.velocity : Vector3.zero;
+            root.velocity = rootVelocity + root.rotation * velocityVector;
+
+            foreach (var part in bodyParts)
+            {
+                var partVelocity = isAdditional ? part.velocity : Vector3.zero;
+                part.velocity = partVelocity + root.rotation * velocityVector;
+            }
         }
 
         private bool CheckJumpAvailable()
@@ -131,6 +138,15 @@ namespace Game.BodyComponents
             }
 
             return true;
+        }
+
+        private JointDrive CreateDefaultJointDrive(float positionSpring)
+        {
+            var slerpDrive = new JointDrive();
+            slerpDrive.maximumForce = float.MaxValue;
+            slerpDrive.positionSpring = positionSpring;
+
+            return slerpDrive;
         }
 
         private Vector3 GetNearestPoint(Vector3 target, IEnumerable<Vector3> points)

@@ -3468,7 +3468,8 @@ MonoBehaviour:
   _mainJoint: {fileID: 713695094}
   _bodyPartsParent: {fileID: 713695091}
   _slerpPositionSpring: 500000
-  _movementSpeed: 1.65
+  _animationSpeed: 1.65
+  _additionalVelocity: 2.5
   _rotationSpeed: 5
   _jumpForce: 120
   _feet: []
@@ -3935,7 +3936,7 @@ MonoBehaviour:
   mode: 0
   blendTime: 0.1
   fixTargetTransforms: 1
-  solverIterationCount: 6
+  solverIterationCount: 10
   visualizeTargetPose: 1
   mappingWeight: 1
   pinWeight: 0
@@ -4285,10 +4286,10 @@ MonoBehaviour:
     target: {fileID: 1920382158}
     props:
       group: 6
-      mappingWeight: 0.7
+      mappingWeight: 0
       pinWeight: 1
-      muscleWeight: 0.2
-      muscleDamper: 1
+      muscleWeight: 1
+      muscleDamper: 0.5
       internalCollisionIgnores:
         ignoreAll: 0
         muscles: []
@@ -4384,10 +4385,10 @@ MonoBehaviour:
     target: {fileID: 1332723487}
     props:
       group: 6
-      mappingWeight: 0.7
+      mappingWeight: 0
       pinWeight: 1
-      muscleWeight: 0.2
-      muscleDamper: 1
+      muscleWeight: 1
+      muscleDamper: 0.5
       internalCollisionIgnores:
         ignoreAll: 0
         muscles: []
@@ -15314,7 +15315,8 @@ MonoBehaviour:
   _mainJoint: {fileID: 1866305142}
   _bodyPartsParent: {fileID: 1866305139}
   _slerpPositionSpring: 500000
-  _movementSpeed: 1.65
+  _animationSpeed: 1.65
+  _additionalVelocity: 2.5
   _rotationSpeed: 5
   _jumpForce: 120
   _feet:
